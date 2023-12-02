@@ -19,3 +19,12 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  * The cleaner shorthand for printing output.
  */
 fun Any?.println() = println(this)
+
+fun String.lazySplit(delimiter: Char): Sequence<String> = sequence {
+    var currentIndex = 0
+    while (currentIndex < length) {
+        val nextIndex = indexOf(delimiter, currentIndex).takeIf { it != -1 } ?: length
+        yield(substring(currentIndex, nextIndex))
+        currentIndex = nextIndex + 1
+    }
+}
