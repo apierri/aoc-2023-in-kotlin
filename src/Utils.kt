@@ -28,3 +28,12 @@ fun String.lazySplit(delimiter: Char): Sequence<String> = sequence {
         currentIndex = nextIndex + 1
     }
 }
+
+fun String.lazySplitIndexed(delimiter: Char): Sequence<Pair<Int, String>> = sequence {
+    var currentIndex = 0
+    while (currentIndex < length) {
+        val nextIndex = indexOf(delimiter, currentIndex).takeIf { it != -1 } ?: length
+        yield(currentIndex to substring(currentIndex, nextIndex))
+        currentIndex = nextIndex + 1
+    }
+}
