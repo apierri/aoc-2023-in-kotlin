@@ -37,3 +37,14 @@ fun String.lazySplitIndexed(delimiter: Char): Sequence<Pair<Int, String>> = sequ
         currentIndex = nextIndex + 1
     }
 }
+
+fun <T> Iterable<T>.splitBy(predicate: (T) -> Boolean): Iterable<Iterable<T>> {
+    return this.fold(mutableListOf(mutableListOf<T>())) { acc, item ->
+        if (predicate(item)) {
+            acc.add(mutableListOf())
+        } else {
+            acc.last().add(item)
+        }
+        acc
+    }
+}
