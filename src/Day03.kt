@@ -1,22 +1,20 @@
-data class PartNumber(
-	val range: IntRange,
-	val num: Int
-)
-
-fun getPartNumbers(input: String): List<PartNumber> {
-	return Regex("(\\d+)").findAll(input).map {
-		PartNumber(
-			range = it.range,
-			num = it.value.toInt()
-		)
-	}.toList()
-}
-
-fun IntRange.expandOne(): IntRange = start-1..endInclusive+1
-
-fun getSymbols(line: String) = Regex("[^\\.\\d]").findAll(line).map { it.range.first }
-
 fun main() {
+	data class PartNumber(
+		val range: IntRange,
+		val num: Int
+	)
+
+	fun IntRange.expandOne(): IntRange = start-1..endInclusive+1
+	fun getSymbols(line: String) = Regex("[^.\\d]").findAll(line).map { it.range.first }
+
+	fun getPartNumbers(input: String): List<PartNumber> {
+		return Regex("(\\d+)").findAll(input).map {
+			PartNumber(
+				range = it.range,
+				num = it.value.toInt()
+			)
+		}.toList()
+	}
 
 	fun part1(input: List<String>): Int {
 		var previousLine = sequence<Int> {}
