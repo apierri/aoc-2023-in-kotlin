@@ -37,6 +37,6 @@ fun main() {
     }
 
     val input = readInput("Day01")
-    "Part 1 is ${part1(input)}".println()
-    "Part 2 is ${part2(input)}".println()
+//    "Part 1 is ${part1(input)}".println()
+//    "Part 2 is ${part2(input)}".println()
 }
