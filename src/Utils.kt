@@ -48,3 +48,9 @@ fun <T> Iterable<T>.splitBy(predicate: (T) -> Boolean): Iterable<Iterable<T>> {
         acc
     }
 }
+
+fun <T> Iterable<T>.iterateInfinitely() = sequence {
+    while (true) {
+        yieldAll(this@iterateInfinitely)
+    }
+}
